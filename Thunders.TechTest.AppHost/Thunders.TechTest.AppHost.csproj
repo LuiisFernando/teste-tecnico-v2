@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Thunders.TechTest.ApiService\Thunders.TechTest.ApiService.csproj" />
+    <ProjectReference Include="..\Thunders.TechTest.Infrastructure\Thunders.TechTest.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
