@@ -32,7 +32,7 @@ namespace Thunders.TechTest.Tests.Infrastructure.Repositories
             // Arrange
             using var context = InMemoryContext;
             var repository = new TollRepository(context);
-            var usage = new TollLog
+            var log = new TollLog
             {
                 LogDateTime = DateTime.UtcNow,
                 TollPlaza = "praça 1",
@@ -43,14 +43,14 @@ namespace Thunders.TechTest.Tests.Infrastructure.Repositories
             };
 
             // Act
-            await repository.AddTollLogsAsync(usage);
+            await repository.AddTollLogsAsync(log);
             await repository.SaveChangesAsync();
 
-            var usages = await repository.GetAllTollLogsAsync();
+            var logs = await repository.GetAllTollLogsAsync();
 
             // Assert
-            Assert.Single(usages);
-            Assert.Equal("praça 1", usages.First().TollPlaza);
+            Assert.Single(logs);
+            Assert.Equal("praça 1", logs.First().TollPlaza);
         }
     }
 }
