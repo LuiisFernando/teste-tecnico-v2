@@ -4,6 +4,6 @@ namespace Thunders.TechTest.Application.Interfaces
 {
     public interface ITollService
     {
-        Task ProcessTollUsageAsync(TollLog usage);
+        Task ProcessTollLogAsync(TollLog usage);
     }
 }

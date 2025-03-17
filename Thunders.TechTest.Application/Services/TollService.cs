@@ -8,7 +8,7 @@ namespace Thunders.TechTest.Application.Services
     {
         private readonly ITollRepository _repository = repository;
 
-        public async Task ProcessTollUsageAsync(TollLog log)
+        public async Task ProcessTollLogAsync(TollLog log)
         {
             try
             {

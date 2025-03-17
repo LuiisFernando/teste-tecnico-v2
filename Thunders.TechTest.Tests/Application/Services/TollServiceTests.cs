@@ -17,7 +17,7 @@ namespace Thunders.TechTest.Tests.Application.Services
         }
 
         [Fact]
-        public async Task ProcessTollUsageAsync_CallsRepositoryMethods()
+        public async Task ProcessTollLogAsync_CallsRepositoryMethods()
         {
             var log = new TollLog
             {
@@ -25,28 +25,28 @@ namespace Thunders.TechTest.Tests.Application.Services
                 LogDateTime = DateTime.UtcNow
             };
 
-            await _service.ProcessTollUsageAsync(log);
+            await _service.ProcessTollLogAsync(log);
 
             _repositoryMock.Verify(r => r.AddTollLogsAsync(log), Times.Once);
             _repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
         }
 
         [Fact]
-        public async Task ProcessTollUsageAsync_ThrowsException_WhenAddTollUsageFails()
+        public async Task ProcessTollLogAsync_ThrowsException_WhenAddTollUsageFails()
         {
-            var usage = new TollLog
+            var log = new TollLog
             {
                 TollPlaza = "Plaza1",
                 LogDateTime = DateTime.UtcNow
             };
 
             var exception = new Exception("Test exception");
-            _repositoryMock.Setup(r => r.AddTollLogsAsync(usage)).ThrowsAsync(exception);
+            _repositoryMock.Setup(r => r.AddTollLogsAsync(log)).ThrowsAsync(exception);
 
-            var ex = await Assert.ThrowsAsync<Exception>(() => _service.ProcessTollUsageAsync(usage));
+            var ex = await Assert.ThrowsAsync<Exception>(() => _service.ProcessTollLogAsync(log));
             Assert.Equal(exception, ex);
 
-            _repositoryMock.Verify(r => r.AddTollLogsAsync(usage), Times.Once);
+            _repositoryMock.Verify(r => r.AddTollLogsAsync(log), Times.Once);
             _repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Never);
         }
     }

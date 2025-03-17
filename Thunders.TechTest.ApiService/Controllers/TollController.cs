@@ -23,7 +23,7 @@ namespace Thunders.TechTest.ApiService.Controllers
 
             try
             {
-                await _tollService.ProcessTollUsageAsync(log);
+                await _tollService.ProcessTollLogAsync(log);
                 return Ok("Log pedágio salvo com sucesso.");
             }
             catch
